@@ -1,21 +1,21 @@
-const { mysql } = require('./options/mysql');
-const { sqlite } = require('./options/sqlite');
-const knexProduct = require('knex')(mysql);
-const knexChat = require('knex')(sqlite);
+// const { mysql } = require('./options/mysql');
+// const { sqlite } = require('./options/sqlite');
+// const knexProduct = require('knex')(mysql);
+// const knexChat = require('knex')(sqlite);
 
-knex
-  .from('libros')
-  .where('id', '=', 3)
-  .update({ precio: 9500 })
-  .then(() => {
-    console.log('Actualizado.');
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => {
-    knex.destroy();
-  });
+// knex
+//   .from('libros')
+//   .where('id', '=', 3)
+//   .update({ precio: 9500 })
+//   .then(() => {
+//     console.log('Actualizado.');
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
+//   .finally(() => {
+//     knex.destroy();
+//   });
 
 /* -------------------------------------------------------------------------- */
 /*                                    Crear                                   */
