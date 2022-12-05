@@ -1,13 +1,24 @@
-const Knex = require('knex');
 const { mysql } = require('../options/mysql');
 const { sqlite } = require('../options/sqlite');
+const knexProduct = require('knex')(mysql);
+const knexChat = require('knex')(sqlite);
 
 /* ----------------------------- Tabla Productos ---------------------------- */
-const tableProducts = Knex.schema(mysql)
-  .createTable('libros', (table) => {
-    table.increments('id'), table.string('nombre'), table.integer('precio'), table.integer('stock'), table.string('img');
-  })
-  .then(() => {
+knexProduct.schema
+  .hasTable('libros')
+  .then((existe) => {
+    !existe &&
+      knexProduct.schema
+        .createTable('libros', (table) => {
+          table.increments('id'), table.string('nombre'), table.integer('precio'), table.integer('stock'), table.string('img');
+        })
+        .catch((err) => {
+          console.log(err);
+          throw new Error(err);
+        })
+        .finally(() => {
+          knexProduct.destroy();
+        });
     console.log('Tabla creada con éxito.');
   })
   .catch((err) => {
@@ -15,15 +26,25 @@ const tableProducts = Knex.schema(mysql)
     throw new Error(err);
   })
   .finally(() => {
-    Knex.destroy();
+    knexProduct.destroy();
   });
 
-  /* ------------------------------- Tabla Chat ------------------------------- */
-const tableChat = Knex(sqlite)
-  .createTable('libros', (table) => {
-    table.increments('id'), table.string('email'), table.string('mensaje'), table.string('fecha');
-  })
-  .then(() => {
+/* ------------------------------- Tabla Chat ------------------------------- */
+knexChat.schema
+  .hasTable('chats')
+  .then((existe) => {
+    !existe &&
+      knexChat.schema
+        .createTable('chats', (table) => {
+          table.increments('id'), table.string('email'), table.string('mensaje'), table.string('fecha');
+        })
+        .catch((err) => {
+          console.log(err);
+          throw new Error(err);
+        })
+        .finally(() => {
+          knexChat.destroy();
+        });
     console.log('Tabla creada con éxito.');
   })
   .catch((err) => {
@@ -31,7 +52,6 @@ const tableChat = Knex(sqlite)
     throw new Error(err);
   })
   .finally(() => {
-    Knex.destroy();
+    knexChat.destroy();
   });
-
-module.exports = { tableChat, tableProducts };
+  

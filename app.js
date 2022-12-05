@@ -6,17 +6,15 @@
 const express = require('express');
 const app = express();
 const port = process.env.port || 8000;
-const Contenedor = require('./container.js');
-const Productos = new Contenedor('productos.txt');
-const Chats = new Contenedor('chat.txt');
 const httpServer = require('http').createServer(app);
 const io = require('socket.io')(httpServer);
 const { engine } = require('express-handlebars');
 /* ----------------------------------- DB ----------------------------------- */
 const { mysql } = require('./options/mysql');
 const { sqlite } = require('./options/sqlite');
-const knexProduct = require('knex')(mysql);
-const knexChat = require('knex')(sqlite);
+const Contenedor = require('./container.js');
+const Productos = new Contenedor(mysql, 'libros');
+const Chats = new Contenedor(sqlite, 'chats');
 /* --------------------------------- Config --------------------------------- */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,7 +31,6 @@ app.engine(
   })
 );
 httpServer.listen(port, () => console.log('SERVER ON http://localhost:' + port));
-
 
 app.get('/', async (req, res) => {
   res.render('home');
