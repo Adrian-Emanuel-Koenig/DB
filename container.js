@@ -9,15 +9,15 @@ class Contenedor {
   async save(product) {
     return this.Knex(this.table)
       .insert(product)
-      .then(() => {
-        console.log('Actualizado.');
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        Knex.destroy();
-      });
+      // .then(() => {
+      //   console.log('Actualizado.');
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // })
+      // .finally(() => {
+      //   Knex.destroy();
+      // });
   }
 
   async getAll() {
@@ -27,12 +27,12 @@ class Contenedor {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        Knex.destroy();
-      });
+      // .catch((err) => {
+      //   console.log(err);
+      // })
+      // .finally(() => {
+      //   Knex.destroy();
+      // });
   }
 
   async getById(id) {
@@ -42,12 +42,12 @@ class Contenedor {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        Knex.destroy();
-      });
+      // .catch((err) => {
+      //   console.log(err);
+      // })
+      // .finally(() => {
+      //   Knex.destroy();
+      // });
   }
 
   async deleteById(id) {
@@ -58,12 +58,12 @@ class Contenedor {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        Knex.destroy();
-      });
+      // .catch((err) => {
+      //   console.log(err);
+      // })
+      // .finally(() => {
+      //   Knex.destroy();
+      // });
   }
 
   async deleteAll() {
@@ -73,12 +73,12 @@ class Contenedor {
     .then((res) => {
       console.log(res);
     })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      Knex.destroy();
-    });
+    // .catch((err) => {
+    //   console.log(err);
+    // })
+    // .finally(() => {
+    //   Knex.destroy();
+    // });
   }
 }
 

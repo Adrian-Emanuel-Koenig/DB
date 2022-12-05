@@ -10,8 +10,8 @@ const sendForm = document.getElementById('sendForm');
 
 function addProduct(e) {
   e.preventDefault();
-  const { title, price, thumbnail } = e.target;
-  const productToSend = { title: title.value, price: price.value, thumbnail: thumbnail.value };
+  const { nombre, precio, img, stock } = e.target;
+  const productToSend = { nombre: nombre.value, precio: precio.value, img: img.value, stock: stock.value };
   socket.emit('productoEnviado', productToSend);
 }
 
