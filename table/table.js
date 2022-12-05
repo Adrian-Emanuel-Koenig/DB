@@ -36,7 +36,7 @@ knexChat.schema
     !existe &&
       knexChat.schema
         .createTable('chats', (table) => {
-          table.increments('id'), table.string('email'), table.string('mensaje'), table.string('fecha');
+          table.increments('id'), table.string('email'), table.string('mensaje'), table.string('hora');
         })
         .catch((err) => {
           console.log(err);
