@@ -49,5 +49,5 @@ io.on('connection', async (socket) => {
 
 async function saveProduct(data) {
   await Productos.save(data);
-  Productos.getAll().then((element) => io.sockets.emit('allProducts', element));
+  Productos.getAll().then((element) => io.sockets.emit('allProducts', ...element));
 }
