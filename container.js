@@ -19,7 +19,7 @@ class Contenedor {
       .from(this.table)
       .select('*')
       .then((res) => {
-        console.log(res);
+        return res;
       })
   }
 
@@ -28,7 +28,7 @@ class Contenedor {
       .from(this.table)
       .where('id', '=', id)
       .then((res) => {
-        console.log(res);
+        return res;
       })
   }
 
